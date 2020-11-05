@@ -20,12 +20,13 @@ public class Cell: MonoBehaviour
     {
         localPosition = _localPosition;
         currentState = CellStates.dead;
-        nextState = CellStates.unkown;
+        nextState = CellStates.dead;
+        UpdateCurrentState();
 
     }
 
   
-    public void checkState(List<Cell> neighbours)
+    public void CheckNextState(List<Cell> neighbours)
     {
         if(localPosition.x % 2 == 0)
         {
@@ -37,21 +38,19 @@ public class Cell: MonoBehaviour
         //Change next statee
     }
 
-    public void updateState()
+    public void UpdateCurrentState()
     {
-        if(currentState == CellStates.live)
-        {
-            
-            
+        currentState = nextState;
+        nextState = CellStates.unkown;
+
+        if (currentState == CellStates.live)
+        {        
             image.color = liveColor;
         }
         else
         {
             image.color = deadColor;
-        }
-
-        currentState = nextState;
-        nextState = CellStates.unkown;
+        }     
     }
 
     public CellStates GetCurrentState()
@@ -59,4 +58,13 @@ public class Cell: MonoBehaviour
         return currentState;
     }
     public Vector2Int GetLocalPosition() { return localPosition; }
+
+    public void InverseCurrentState()
+    {
+        if (currentState == CellStates.dead) nextState = CellStates.live;
+        else if (currentState == CellStates.live) nextState = CellStates.dead;
+        else Debug.LogWarning(name + " has an invalid state: " + currentState);
+
+        UpdateCurrentState();
+    }
 }

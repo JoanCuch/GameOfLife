@@ -19,7 +19,6 @@ public class Board: MonoBehaviour
 	private void GiveAllCellsHisPosition()
 	{
 		float rowNumber = gridLayout.constraintCount;
-		Debug.Log(rowNumber);
 		for (int idx = 1; idx <= cellList.Count; idx++)
 		{
 			int x = (int)Mathf.Floor(idx % rowNumber);
@@ -32,7 +31,6 @@ public class Board: MonoBehaviour
 
 			cellList[idx-1].Initialize(localPosition);
 		}
-		Debug.Log(cellList.Count);
 	}
 
 	public void CheckCellState()
@@ -40,7 +38,7 @@ public class Board: MonoBehaviour
 		foreach(Cell cell in cellList)
 		{
 			List<Cell> neighbours = new List<Cell>();
-			cell.checkState(neighbours);
+			cell.CheckNextState(neighbours);
 		}
 	}
 
@@ -48,7 +46,7 @@ public class Board: MonoBehaviour
 	{
 		foreach(Cell cell in cellList)
 		{
-			cell.updateState();
+			cell.UpdateCurrentState();
 		}
 	}
 }
