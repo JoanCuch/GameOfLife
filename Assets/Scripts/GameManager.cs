@@ -6,14 +6,13 @@ using UnityEngine.Tilemaps;
 using UnityEngine.Assertions;
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Board board;
 
-    private CellController cellController;
 
     // Start is called before the first frame update
     void Start()
     {
-        cellController = new CellController(tilemap);
+        board.Initialize();
     }
 
     // Update is called once per frame
@@ -24,8 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-        Debug.Log("next turn");
-        cellController.CheckCellState();
-        cellController.UpdateCellState();
+        board.CheckCellState();
+        board.UpdateCellState();
     }
 }

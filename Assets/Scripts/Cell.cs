@@ -2,33 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Cell tile", menuName ="GameOfLife")]
-public class Cell: Tile
+public class Cell: MonoBehaviour
 {
     [SerializeField] private Color liveColor;
     [SerializeField] private Color deadColor;
+    [SerializeField] private Image image;
 
     public enum CellStates { live, dead, unkown }
     private CellStates currentState;
     private CellStates nextState;
 
-    private Vector3Int localPosition;
+    [SerializeField]private Vector2Int localPosition;
 
-    public void Initialize(Vector3Int _localPosition)
+    public void Initialize(Vector2Int _localPosition)
     {
         localPosition = _localPosition;
         currentState = CellStates.dead;
         nextState = CellStates.unkown;
+
     }
 
   
     public void checkState(List<Cell> neighbours)
     {
-        Debug.Log("local position: " + localPosition);
-        
         if(localPosition.x % 2 == 0)
         {
             currentState = CellStates.live;
@@ -41,27 +39,24 @@ public class Cell: Tile
 
     public void updateState()
     {
-        Debug.Log(currentState);
         if(currentState == CellStates.live)
         {
-            color = liveColor;
+            
+            
+            image.color = liveColor;
         }
         else
         {
-            color = deadColor;
+            image.color = deadColor;
         }
-
 
         currentState = nextState;
         nextState = CellStates.unkown;
-
-        //Change tiles
-
     }
 
     public CellStates GetCurrentState()
     {
         return currentState;
     }
-    public Vector3Int GetLocalPosition() { return localPosition; }
+    public Vector2Int GetLocalPosition() { return localPosition; }
 }
