@@ -10,15 +10,19 @@ public class Cell: MonoBehaviour
     [SerializeField] private Color deadColor;
     [SerializeField] private Image image;
 
+    [SerializeField] private int minNeighboursToLife;
+    [SerializeField] private int maxNeighboursToLife;
+    [SerializeField] private int minNeighbousToBorn;
+
     public enum CellStates { live, dead, unkown }
     private CellStates currentState;
     private CellStates nextState;
 
     [SerializeField]private Vector2Int localPosition;
 
-    public void Initialize(Vector2Int _localPosition)
+    public void Initialize()
     {
-        localPosition = _localPosition;
+        //localPosition = _localPosition;
         currentState = CellStates.dead;
         nextState = CellStates.dead;
         UpdateCurrentState();
@@ -27,30 +31,55 @@ public class Cell: MonoBehaviour
 
   
     public void CheckNextState(List<Cell> neighbours)
-    {
-        if(localPosition.x % 2 == 0)
+    {       
+        int liveNeighbours = 0;
+
+        foreach (Cell neighbour in neighbours)
         {
-            currentState = CellStates.live;
+            if(neighbour.GetCurrentState() == CellStates.live)
+            {
+                liveNeighbours++;
+            }
         }
 
-        
-        //Get cells around
-        //Change next statee
+        if(currentState == CellStates.live)
+        {
+            if(liveNeighbours <= minNeighboursToLife || liveNeighbours >= maxNeighboursToLife)
+            {
+                nextState = CellStates.dead;
+            }
+        }
+        else if(currentState == CellStates.dead)
+        {
+            if(liveNeighbours == minNeighbousToBorn)
+            {
+                nextState = CellStates.live;
+            }
+        }
+        else
+        {
+            Debug.LogError(name + " state not valid: " + currentState);
+        }
+
+        if(liveNeighbours >0)
+            Debug.Log(name + " " + liveNeighbours + " " + nextState);
     }
 
     public void UpdateCurrentState()
     {
+        if (nextState == CellStates.unkown) return;
+
         currentState = nextState;
         nextState = CellStates.unkown;
-
+        
         if (currentState == CellStates.live)
-        {        
+        {
             image.color = liveColor;
         }
         else
         {
             image.color = deadColor;
-        }     
+        }    
     }
 
     public CellStates GetCurrentState()
