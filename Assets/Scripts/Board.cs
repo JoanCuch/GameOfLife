@@ -13,12 +13,18 @@ public class Board: MonoBehaviour
 	[SerializeField] private Cell[,] board;
 	[SerializeField] private int boardRows;
 	[SerializeField] private int boardColumns;
-	[SerializeField] private GameObject CellPrefab;
+	[SerializeField] private GameObject cellPrefab;
 
 	public void Initialize()
 	{
 		gridLayout = GetComponent<GridLayoutGroup>();
 		gridLayout.constraintCount = boardColumns;
+
+		Vector2 cellSize = Vector2.zero;
+		cellSize.x = cellPrefab.GetComponent<RectTransform>().rect.width * cellPrefab.transform.localScale.x;
+		cellSize.y = cellPrefab.GetComponent<RectTransform>().rect.height * cellPrefab.transform.localScale.y;
+
+		gridLayout.cellSize = cellSize;
 
 		board = new Cell[boardColumns, boardRows];
 
@@ -26,7 +32,7 @@ public class Board: MonoBehaviour
 		{
 			for(int y = 0; y < boardRows; y++)
 			{
-				GameObject newCell = Instantiate(CellPrefab, this.transform);
+				GameObject newCell = Instantiate(cellPrefab, this.transform);
 				board[x, y] = newCell.GetComponent<Cell>();
 				board[x, y].Initialize();
 			}

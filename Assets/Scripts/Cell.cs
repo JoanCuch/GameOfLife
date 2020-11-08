@@ -61,9 +61,7 @@ public class Cell: MonoBehaviour
             Debug.LogError(name + " state not valid: " + currentState);
         }
 
-        if(liveNeighbours >0)
-            Debug.Log(name + " " + liveNeighbours + " " + nextState);
-    }
+     }
 
     public void UpdateCurrentState()
     {
