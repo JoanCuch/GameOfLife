@@ -15,6 +15,11 @@ public class Board: MonoBehaviour
 	[SerializeField] private int boardColumns;
 	[SerializeField] private GameObject cellPrefab;
 
+	[SerializeField] private float minScale;
+	[SerializeField] private float maxScale;
+	[SerializeField] private Scrollbar sizeScrollBar;
+	[SerializeField] private float scaleMultiplier;
+
 	public void Initialize()
 	{
 		gridLayout = GetComponent<GridLayoutGroup>();
@@ -28,35 +33,19 @@ public class Board: MonoBehaviour
 
 		board = new Cell[boardColumns, boardRows];
 
-		for(int x= 0; x<boardColumns; x++)
+		for(int y= 0; y<boardRows; y++)
 		{
-			for(int y = 0; y < boardRows; y++)
+			for(int x = 0; x < boardColumns; x++)
 			{
 				GameObject newCell = Instantiate(cellPrefab, this.transform);
 				board[x, y] = newCell.GetComponent<Cell>();
 				board[x, y].Initialize();
+				board[x, y].localPosition = new Vector2(x, y);
 			}
 		}
 
-		//GiveAllCellsHisPosition();
+		ChangeBoardScale();
 	}
-
-	/*private void GiveAllCellsHisPosition()
-	{
-		float rowNumber = gridLayout.constraintCount;
-		for (int idx = 1; idx <= cellList.Count; idx++)
-		{
-			int x = (int)Mathf.Floor(idx % rowNumber);
-			if (x == 0) x = 5;
-			x--;
-
-			int y = (int)Mathf.Ceil(idx / rowNumber)-1;
-
-			Vector2Int localPosition = new Vector2Int(x, y);
-
-			cellList[idx-1].Initialize(localPosition);
-		}
-	}*/
 
 	public void CheckCellState()
 	{
@@ -99,5 +88,14 @@ public class Board: MonoBehaviour
 		{
 			cell.UpdateCurrentState();
 		}
+	}
+
+	public void ChangeBoardScale()
+	{
+		float scale = Mathf.Lerp(minScale, maxScale, sizeScrollBar.value) * scaleMultiplier;
+
+		Vector3 newScale = new Vector3(scale, scale, 1);
+		
+		transform.localScale = newScale;
 	}
 }

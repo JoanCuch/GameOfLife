@@ -18,7 +18,7 @@ public class Cell: MonoBehaviour
     private CellStates currentState;
     private CellStates nextState;
 
-    [SerializeField]private Vector2Int localPosition;
+    public Vector2 localPosition;
 
     public void Initialize()
     {
@@ -84,7 +84,6 @@ public class Cell: MonoBehaviour
     {
         return currentState;
     }
-    public Vector2Int GetLocalPosition() { return localPosition; }
 
     public void InverseCurrentState()
     {
