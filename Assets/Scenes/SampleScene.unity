@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56364892}
   - component: {fileID: 56364891}
+  - component: {fileID: 56364893}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -168,6 +169,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &56364893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56364890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8d22f587b756e428b2cfb35439a90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDelay: 0.02
+  maxDelay: 1
+  delayScrollBar: {fileID: 331223151}
+  delayMultiplier: 1
+  playString: Play
+  pauseString: Pause
+  text: {fileID: 1121319927}
+  gameManager: {fileID: 56364891}
 --- !u!1 &331223149
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +221,7 @@ RectTransform:
   m_Children:
   - {fileID: 2130170686}
   m_Father: {fileID: 397226666}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -249,15 +270,15 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 663842948}
   m_HandleRect: {fileID: 663842947}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 0.5
   m_Size: 0.254
-  m_NumberOfSteps: 5
+  m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1704339560}
-        m_TargetAssemblyTypeName: Board, Assembly-CSharp
-        m_MethodName: UpdateCellState
+      - m_Target: {fileID: 56364893}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: ChangeDelay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -332,12 +353,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1704339559}
   - {fileID: 628158254}
   - {fileID: 630960152}
   - {fileID: 331223150}
   - {fileID: 1829912849}
   m_Father: {fileID: 1222234745}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -459,7 +481,7 @@ RectTransform:
   m_Children:
   - {fileID: 783343896}
   m_Father: {fileID: 397226666}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -591,7 +613,7 @@ RectTransform:
   m_Children:
   - {fileID: 1121319926}
   m_Father: {fileID: 397226666}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -641,9 +663,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56364891}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: InverseAutomaticTurns
+      - m_Target: {fileID: 56364893}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: AutomaticTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39359,7 +39381,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1704339559}
   - {fileID: 397226666}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -39399,7 +39420,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1222234745}
+  m_Father: {fileID: 397226666}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -39496,7 +39517,7 @@ RectTransform:
   m_Children:
   - {fileID: 756314321}
   m_Father: {fileID: 397226666}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
