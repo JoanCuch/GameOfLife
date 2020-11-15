@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e9132a4dca73041af30d64118647cb, type: 3}
+  m_Name: BoardConfigData
+  m_EditorClassIdentifier: 
+  _boardSize: {x: 10, y: 10}
+  _boardMinScale: 0.1
+  _boardMaxScale: 3
+  _boardScaleMultiplier: 1
+  _boardInitialScale: 1
+  _timerMinDelay: 0.3
+  _timerMaxDelay: 5
+  _timerDelayMultiplier: 1
+  _timerInitialDelay: 1
+  _liveColor: {r: 0.073467255, g: 1, b: 0, a: 1}
+  _deadColor: {r: 0, g: 0, b: 0, a: 1}
+  _minNeighboursToLife: 1
+  _maxNeighboursToLife: 4
+  _minNeighbousToBorn: 3

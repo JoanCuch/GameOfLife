@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 209312054521347927}
   - component: {fileID: 2159919570613058315}
   - component: {fileID: 7104365218702279812}
-  - component: {fileID: -3293130758783466833}
   - component: {fileID: -7436665338178649580}
+  - component: {fileID: 5864105252013782236}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -77,25 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-3293130758783466833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841021691234559119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c62ca29ab14a945aa692ac84823f53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  liveColor: {r: 0.2216981, g: 0.8867924, b: 0.38079906, a: 1}
-  deadColor: {r: 0, g: 0, b: 0, a: 1}
-  image: {fileID: 7104365218702279812}
-  minNeighboursToLife: 1
-  maxNeighboursToLife: 4
-  minNeighbousToBorn: 3
-  localPosition: {x: 0, y: 0}
 --- !u!114 &-7436665338178649580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3293130758783466833}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Cell, Assembly-CSharp
         m_MethodName: InverseCurrentState
         m_Mode: 1
@@ -151,3 +132,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5864105252013782236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841021691234559119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25d667649b6b8a48aad89fa8b0da538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 7104365218702279812}
+  _button: {fileID: -7436665338178649580}
