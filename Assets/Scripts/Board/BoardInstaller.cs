@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GOL.Configuration;
+using GOL.GUI;
 
 
 namespace GOL.Board
@@ -14,13 +15,14 @@ namespace GOL.Board
         [SerializeField] private Timer _timer;
         
         
-        public void Install(BoardConfigData boardConfigData)
+        public void Install(BoardConfigData boardConfigData, GUIModel guiModel)
         {
+                     
             CellModel[,] cellModels = InstallCells(boardConfigData);
 
             BoardModel model = new BoardModel(boardConfigData, cellModels);
 
-            new BoardController(model, _view, _timer);       
+            new BoardController(model, _view, _timer, guiModel);       
         }
 
         private CellModel[,] InstallCells(BoardConfigData boardConfigData)

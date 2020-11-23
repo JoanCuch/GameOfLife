@@ -17,10 +17,10 @@ MonoBehaviour:
   _boardMaxScale: 3
   _boardScaleMultiplier: 1
   _boardInitialScale: 1
-  _timerMinDelay: 0.3
+  _timerMinDelay: 0.1
   _timerMaxDelay: 5
-  _timerDelayMultiplier: 1
-  _timerInitialDelay: 1
+  _timerDelayMultiplier: 0.3
+  _timerInitialDelay: 0.5
   _liveColor: {r: 0.073467255, g: 1, b: 0, a: 1}
   _deadColor: {r: 0, g: 0, b: 0, a: 1}
   _minNeighboursToLife: 1

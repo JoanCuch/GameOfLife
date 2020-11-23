@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="GOL.GameOfLifeInstaller" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameOfLifeInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.BoardController" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAgAAAACAAAAAAAAAgCAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\BoardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.BoardInstaller">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAEAAAAAAAAAAAAAAAAACAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\BoardInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.BoardModel" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAEAAAAACAAAAAQAAAAAAAAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Board\BoardModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.BoardView" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAACAAAmAAAAAAAAAAAAAAAAAAAAAAAFAAAg0A=</HashCode>
+      <FileName>Assets\Scripts\Board\BoardView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.Timer">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAASAIACBAAAAAIAAAEAAAAAgAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.Cell.CellController" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\Cell\CellController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.Cell.CellInstaller">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\Cell\CellInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.Cell.CellModel" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAACAAgAAAEAACABAIAQAAAAAAAAAACABA=</HashCode>
+      <FileName>Assets\Scripts\Board\Cell\CellModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Board.Cell.CellView" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAACAAAAAAAAAAAQIQAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\Cell\CellView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GOL.Configuration.BoardConfigData" Collapsed="true">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gUAAARAAgAgwAAIIiBAIBAAAAAABBCAQAAAQoQAACAE=</HashCode>
+      <FileName>Assets\Scripts\Configuration\BoardConfigData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoardMovement" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Deprecated\BoardMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="GOL.Configuration.CellStatesData">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Configuration\CellStatesData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

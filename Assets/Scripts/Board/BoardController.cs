@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GOL.GUI;
 
 namespace GOL.Board
 {
@@ -11,22 +12,26 @@ namespace GOL.Board
         private BoardView _view;
         private Timer _timer;
 
-        public BoardController(BoardModel model, BoardView view, Timer timer)
+        public BoardController(BoardModel model, BoardView view, Timer timer, GUIModel guiModel)
         {
             _model = model;
             _view = view;
             _timer = timer;
                      
-            view.Setup(_model.BoardConfigData);
-            view.SubscribeToPlayEvent(Play);
-            view.SubscribeToNextTurnEvent(NextTurn);
-            view.SubscribeToTimeScaleEvent(ChangeStandardDelay);
+            _view.Setup(_model.BoardConfigData);
 
-            timer.Setup(_model.BoardConfigData);
-            timer.SubscribeToAlarm(NextTurn);         
+            _timer.Setup(_model.BoardConfigData);
+            _timer.SubscribeToAlarm(NextTurn);
+
+            guiModel.SubscribeToPlayEvent(Play);
+            guiModel.SubscribeToNextTurnEvent(NextTurn);
+            guiModel.SubscribeToTimeScaleEvent(ChangeStandardDelay);
+            guiModel.SubscribeToSizeScaleEvent(ChangeBoardSize);
+
+     
         }
 
-        public void Play()
+        public void Play(bool isOnPLay)
         {
             _timer.AutomaticTurn();
         }
@@ -41,5 +46,10 @@ namespace GOL.Board
         {
             _timer.ChangeStandardDelay(normalizedDelay);
         }
+
+        private void ChangeBoardSize(float normalizedSize)
+		{
+            _view.UpdateBoardScale(normalizedSize);
+		}
     }
 }
