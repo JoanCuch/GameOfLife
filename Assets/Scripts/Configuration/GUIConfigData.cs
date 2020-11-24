@@ -8,10 +8,10 @@ namespace GOL.Configuration
     [CreateAssetMenu(menuName = "Config/GUIConfigData", fileName = "GUIConfigData")]
     public class GUIConfigData : ScriptableObject
     {
-        [SerializeField] private string playButtonString;
-        [SerializeField] private string pauseButtonString;
+        [SerializeField] private string _playButtonString;
+        [SerializeField] private string _pauseButtonString;
 
-        public string PlayButtonString => playButtonString;
-        public string PauseButtonString => pauseButtonString;
+        public string PlayButtonString => _playButtonString;
+        public string PauseButtonString => _pauseButtonString;
     }
 }

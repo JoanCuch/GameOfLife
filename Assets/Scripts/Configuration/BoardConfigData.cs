@@ -8,6 +8,8 @@ namespace GOL.Configuration
     [CreateAssetMenu(menuName = "Config/BoardConfigData", fileName = "BoardConfigData")]
     public class BoardConfigData : ScriptableObject
     {
+        [SerializeField] private int _mouseClickButton;
+
         [SerializeField] private Vector2Int _boardSize;
         [SerializeField] private float _boardMinScale;
         [SerializeField] private float _boardMaxScale;
@@ -25,6 +27,12 @@ namespace GOL.Configuration
         [SerializeField] private int _maxNeighboursToLife;
         [SerializeField] private int _minNeighbousToBorn;
 
+        [SerializeField] private float _boardLerping;
+        [SerializeField] private int _buttonsLayer;
+
+
+        public int MouseClickButton => _mouseClickButton;
+
         public Vector2Int BoardSize => _boardSize;
         public float BoardMinScale => _boardMinScale;
         public float BoardMaxScale => _boardMaxScale;
@@ -40,6 +48,9 @@ namespace GOL.Configuration
         public int MinNeighboursToLife => _minNeighboursToLife;
         public int MaxNeighboursToLife => _maxNeighboursToLife;
         public int MinNeighboursToBorn => _minNeighbousToBorn;
+
+        public float BoardLerping => _boardLerping;
+        public int ButtonsLayer => _buttonsLayer;
 
         
 

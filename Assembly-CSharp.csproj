@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Board\Timer.cs" />
     <Compile Include="Assets\Scripts\Board\Cell\CellView.cs" />
     <Compile Include="Assets\Scripts\Board\BoardView.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUIInstaller.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIModel.cs" />
     <Compile Include="Assets\Scripts\Board\BoardController.cs" />
     <Compile Include="Assets\Scripts\Configuration\BoardConfigData.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Assets\Scripts\Board\BoardInstaller.cs" />
     <Compile Include="Assets\Scripts\Deprecated\BoardMovement.cs" />
     <Compile Include="Assets\Scripts\Configuration\GUIConfigData.cs" />
-    <Compile Include="Assets\Scripts\GUI\GUIInstaller.cs" />
+    <Compile Include="Assets\Scripts\Deprecated\RaycastTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
