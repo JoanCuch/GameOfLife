@@ -28,6 +28,7 @@ namespace GOL.Configuration
         [SerializeField] private int _minNeighbousToBorn;
 
         [SerializeField] private float _boardLerping;
+        [SerializeField] private float _minDistanceToConsiderAsDragging;
         [SerializeField] private int _buttonsLayer;
 
 
@@ -51,6 +52,7 @@ namespace GOL.Configuration
 
         public float BoardLerping => _boardLerping;
         public int ButtonsLayer => _buttonsLayer;
+        public float MinDistanceToConsiderDragging => _minDistanceToConsiderAsDragging;
 
         
 

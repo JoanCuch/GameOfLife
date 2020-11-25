@@ -16,6 +16,8 @@ namespace GOL.Board.Cell
 
         private UnityEvent<CellStatesData> _updatedState;
 
+        private bool _ableToChange;
+
         public CellModel(BoardConfigData _boardConfigData)
         {
             this._boardConfigData = _boardConfigData;
@@ -23,6 +25,8 @@ namespace GOL.Board.Cell
             _nextState = CellStatesData.dead;
 
             _updatedState = new UnityEvent<CellStatesData>();
+
+            _ableToChange = true;
         }
 
         public BoardConfigData BoardConfigData => _boardConfigData;
@@ -62,6 +66,11 @@ namespace GOL.Board.Cell
 
         }
 
+        public void SetAbleToChange(bool dragging)
+		{
+            _ableToChange = !dragging;
+		}
+
         public void UpdateCurrentState()
         {
             if (_nextState == CellStatesData.unkown) return;
@@ -78,11 +87,18 @@ namespace GOL.Board.Cell
 
         public void InverseCurrentState()
         {
-            if (_currentState == CellStatesData.dead) _nextState = CellStatesData.live;
-            else if (_currentState == CellStatesData.live) _nextState = CellStatesData.dead;
-            else Debug.LogWarning(" has an invalid state: " + _currentState);
+            if (_ableToChange)
+            {
+                if (_currentState == CellStatesData.dead) _nextState = CellStatesData.live;
+                else if (_currentState == CellStatesData.live) _nextState = CellStatesData.dead;
+                else Debug.LogWarning(" has an invalid state: " + _currentState);
 
-            UpdateCurrentState();
+                UpdateCurrentState();
+            }
+			else
+			{
+                _ableToChange = true;
+			}
         }
     }
 }

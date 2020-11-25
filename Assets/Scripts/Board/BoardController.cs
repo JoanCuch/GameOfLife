@@ -18,9 +18,6 @@ namespace GOL.Board
             _view = view;
             _timer = timer;
                      
-            _view.Setup(_model.BoardConfigData);
-
-            _timer.Setup(_model.BoardConfigData);
             _timer.SubscribeToAlarm(NextTurn);
 
             guiModel.SubscribeToPlayEvent(Play);

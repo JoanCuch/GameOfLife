@@ -17,12 +17,15 @@ namespace GOL.Board
         
         public void Install(BoardConfigData boardConfigData, GUIModel guiModel)
         {
-                     
+            _timer.Setup(boardConfigData);
+            _view.Setup(boardConfigData);
+
             CellModel[,] cellModels = InstallCells(boardConfigData);
 
             BoardModel model = new BoardModel(boardConfigData, cellModels);
 
-            new BoardController(model, _view, _timer, guiModel);       
+            BoardController controller = new BoardController(model, _view, _timer, guiModel);   
+           
         }
 
         private CellModel[,] InstallCells(BoardConfigData boardConfigData)
@@ -38,6 +41,8 @@ namespace GOL.Board
 
                     CellModel cellModel = new CellModel(boardConfigData);
                     board[x, y] = cellModel;
+
+                    _view.SubscribeToDraggingBoar(cellModel.SetAbleToChange);
 
                     new CellController(cellModel, cellView);                   
                 }

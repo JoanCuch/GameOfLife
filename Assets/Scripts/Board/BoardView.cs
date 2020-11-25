@@ -14,9 +14,11 @@ namespace GOL.Board
 
         private BoardConfigData _boardConfigData;
         private Vector3 _distanceOffset;
+        private Vector3 _origin;
         private bool _validClick;
 
-        public float lerping;
+        private bool _sentEvent;
+        private UnityEvent<bool> _draggingBoard;
 
         public void Setup(BoardConfigData _boardConfigData)
         {
@@ -24,12 +26,16 @@ namespace GOL.Board
             _gridLayout.constraintCount = this._boardConfigData.BoardSize.x;
             _distanceOffset = Vector3.zero;
             _validClick = false;
+            _sentEvent = false;
+            _draggingBoard = new UnityEvent<bool>();
         }
 
         public void Update()
 		{
             UpdateBoardMovement();
 		}
+
+        public void SubscribeToDraggingBoar(UnityAction<bool> action) => _draggingBoard.AddListener(action);
 
         public void UpdateBoardScale(float scaleNumber)
         {
@@ -57,22 +63,34 @@ namespace GOL.Board
 
                 if (buttonHit && buttonHit.transform.gameObject.layer != _boardConfigData.ButtonsLayer)
                 {
-                    Debug.Log(buttonHit.transform.name + " " + buttonHit.transform.position);
-                    _validClick = true;
+                    _validClick = true;                  
                     Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     _distanceOffset = touchPos - transform.position;
+                    _origin = transform.position;
+                    _sentEvent = false;
                 }
             }
-            else if (Input.GetMouseButtonUp(_boardConfigData.MouseClickButton))
+            
+            if (Input.GetMouseButtonUp(_boardConfigData.MouseClickButton))
 			{
                 _validClick = false;
-			}
+                _origin = transform.position;
+                _draggingBoard.Invoke(false);
+
+            }
 
             if (_validClick && Input.GetMouseButton(_boardConfigData.MouseClickButton))
             {
                 Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 newPosition = new Vector3(touchPos.x - _distanceOffset.x, touchPos.y - _distanceOffset.y, transform.position.z);
                 transform.position = newPosition;
+
+                if(!_sentEvent && Vector3.Distance(_origin, transform.position) >= _boardConfigData.MinDistanceToConsiderDragging)
+				{
+                    _draggingBoard.Invoke(true);
+                    _sentEvent = true;
+                }
+
             }
         }
 

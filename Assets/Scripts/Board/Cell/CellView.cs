@@ -12,7 +12,7 @@ namespace GOL.Board.Cell
     {
         [SerializeField] private Image _image;
         [SerializeField] private Button _button;
-        
+      
         private BoardConfigData _boardConfigData;
         
         // Start is called before the first frame update
