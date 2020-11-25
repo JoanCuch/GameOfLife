@@ -100,5 +100,10 @@ namespace GOL.Board.Cell
                 _ableToChange = true;
 			}
         }
+
+        public void Reset()
+		{
+            if (_currentState == CellStatesData.live) InverseCurrentState();
+		}
     }
 }

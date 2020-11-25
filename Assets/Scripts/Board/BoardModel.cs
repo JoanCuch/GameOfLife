@@ -62,7 +62,13 @@ namespace GOL.Board
 			}
 		}
 
-		
+		public void ResetCells()
+		{
+			foreach(CellModel cell in _board)
+			{
+				cell.Reset();
+			}
+		}
 
 
 	}

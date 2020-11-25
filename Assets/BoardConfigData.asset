@@ -28,5 +28,5 @@ MonoBehaviour:
   _maxNeighboursToLife: 4
   _minNeighbousToBorn: 3
   _boardLerping: 0.3
-  _minDistanceToConsiderAsDragging: 2
+  _minDistanceToConsiderAsDragging: 1
   _buttonsLayer: 5

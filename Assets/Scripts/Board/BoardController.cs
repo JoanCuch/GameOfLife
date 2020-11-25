@@ -24,6 +24,7 @@ namespace GOL.Board
             guiModel.SubscribeToNextTurnEvent(NextTurn);
             guiModel.SubscribeToTimeScaleEvent(ChangeStandardDelay);
             guiModel.SubscribeToSizeScaleEvent(ChangeBoardSize);
+            guiModel.SubscribeToResetEvent(Reset);
 
      
         }
@@ -47,6 +48,11 @@ namespace GOL.Board
         private void ChangeBoardSize(float normalizedSize)
 		{
             _view.UpdateBoardScale(normalizedSize);
+		}
+
+        private void Reset()
+		{
+            _model.ResetCells();
 		}
     }
 }

@@ -14,6 +14,7 @@ namespace GOL.GUI
 			view.SubscribeToPlayButton(model.ChangePlayState);
 			view.SubscribeToSizeScaleButton(model.ChangeSizeScale);
 			view.SubscribeToTimeScaleButton(model.ChangeTimeScale);
+			view.SubscribeToResetButton(model.Reset);
 
 			model.SubscribeToPlayTextEvent(view.SetPlayButtonText);
 		}
