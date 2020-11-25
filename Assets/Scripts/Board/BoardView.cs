@@ -50,7 +50,8 @@ namespace GOL.Board
             if (Input.GetMouseButtonDown(_boardConfigData.MouseClickButton))
             {
 
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = Camera.main.transform.position.z;
 
                 RaycastHit2D buttonHit = Physics2D.Raycast(mousePosition, Vector3.forward);
 
@@ -66,7 +67,6 @@ namespace GOL.Board
 			{
                 _validClick = false;
 			}
-
 
             if (_validClick && Input.GetMouseButton(_boardConfigData.MouseClickButton))
             {

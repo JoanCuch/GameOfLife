@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e2c63f3bce7b443b5616f75de1e3ae, type: 3}
   m_Name: GUIConfigData
   m_EditorClassIdentifier: 
-  playButtonString: Play
-  pauseButtonString: Pause
+  _playButtonString: Play
+  _pauseButtonString: Pause
