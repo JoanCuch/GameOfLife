@@ -10,17 +10,17 @@ namespace GOL
     public class GameOfLifeInstaller : MonoBehaviour
     {
         [SerializeField] private BoardConfigData _boardConfigData;
-        [SerializeField] private GUIConfigData _gUIConfigData;
+        [SerializeField] private GUIConfigData _guiConfigData;
 
         [SerializeField] private BoardInstaller _boardInstaller;
-        [SerializeField] private GUIInstaller _gUIInstaller;
+        [SerializeField] private GUIInstaller _guiInstaller;
 
-
-        // Start is called before the first frame update
         private void Start()
         {
-            _gUIInstaller.Install(_gUIConfigData);
-            _boardInstaller.Install(_boardConfigData, _gUIInstaller.GUIModel);
+            GUIModel guiModel = new GUIModel(_guiConfigData);
+
+            _guiInstaller.Install(guiModel);
+            _boardInstaller.Install(_boardConfigData, guiModel);
         }
     }
 }

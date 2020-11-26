@@ -20,13 +20,12 @@ namespace GOL.Board
                      
             _timer.SubscribeToAlarm(NextTurn);
 
-            guiModel.SubscribeToPlayEvent(Play);
             guiModel.SubscribeToNextTurnEvent(NextTurn);
-            guiModel.SubscribeToTimeScaleEvent(ChangeStandardDelay);
-            guiModel.SubscribeToSizeScaleEvent(ChangeBoardSize);
             guiModel.SubscribeToResetEvent(Reset);
 
-     
+            guiModel.Play.Subscribe(Play);
+            guiModel.TimeScale.Subscribe(ChangeStandardDelay);
+            guiModel.SizeScale.Subscribe(ChangeBoardSize);    
         }
 
         public void Play(bool isOnPLay)

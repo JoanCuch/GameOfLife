@@ -4,23 +4,16 @@ using UnityEngine;
 using GOL.Configuration;
 
 
-namespace GOL.GUI {
-
+namespace GOL.GUI
+{
     public class GUIInstaller : MonoBehaviour
     {
-
         [SerializeField] private GUIView _view;
-        private GUIModel _model;
 
-        public void Install(GUIConfigData configData)
+        public void Install(GUIModel model)
 		{
-            _model = new GUIModel(configData);
-
-            new GUIController(_view, _model); 
+            new GUIController(_view, model); 
 		}
-
-        public GUIModel GUIModel => _model;
     }
-
 }
 
