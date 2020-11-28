@@ -30,5 +30,11 @@ namespace GOL.Reactive
 		{
 			_action += action;
 		}
+
+		public void SetValueWithoutReaction(T value)
+		{
+			_value = value;
+		}
+
 	}
 }

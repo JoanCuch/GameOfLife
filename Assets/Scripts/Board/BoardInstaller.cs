@@ -42,7 +42,7 @@ namespace GOL.Board
                     CellModel cellModel = new CellModel(boardConfigData);
                     board[x, y] = cellModel;
 
-                    _view.SubscribeToDraggingBoar(cellModel.SetAbleToChange);
+                    _view.IsDraggingBoard.Subscribe(cellModel.SetAbleToChange);
 
                     new CellController(cellModel, cellView);                   
                 }

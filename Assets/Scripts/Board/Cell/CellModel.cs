@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GOL.Configuration;
+using GOL.Reactive;
 using UnityEngine.Events;
 using UnityEngine.PlayerLoop;
 
@@ -10,13 +11,11 @@ namespace GOL.Board.Cell
     public class CellModel
     {
         private BoardConfigData _boardConfigData;
-
         private CellStatesData _currentState;
         private CellStatesData _nextState;
-
-        private UnityEvent<CellStatesData> _updatedState;
-
+        public readonly ReactiveProperty<CellStatesData> UpdatedState;
         private bool _ableToChange;
+        public BoardConfigData BoardConfigData => _boardConfigData;
 
         public CellModel(BoardConfigData _boardConfigData)
         {
@@ -24,14 +23,10 @@ namespace GOL.Board.Cell
             _currentState = CellStatesData.dead;
             _nextState = CellStatesData.dead;
 
-            _updatedState = new UnityEvent<CellStatesData>();
+            UpdatedState = new ReactiveProperty<CellStatesData>();
 
             _ableToChange = true;
         }
-
-        public BoardConfigData BoardConfigData => _boardConfigData;
-
-        public void SubscribeToStateUpdates(UnityAction<CellStatesData> action) => _updatedState.AddListener(action);
 
         public void CheckNextState(List<CellModel> neighbours)
         {
@@ -77,7 +72,7 @@ namespace GOL.Board.Cell
 
             _currentState = _nextState;
             _nextState = CellStatesData.unkown;
-            _updatedState.Invoke(_currentState);
+            UpdatedState.Value = _currentState;
         }
 
         public CellStatesData GetCurrentState()
