@@ -17,8 +17,7 @@ namespace GOL.Board
         private float _standardDelay;
 
         private UnityEvent _alarm;
-
-        
+    
         public void Setup(BoardConfigData boardConfigData)
         {
             _alarm = new UnityEvent();
@@ -26,10 +25,8 @@ namespace GOL.Board
             _currentDelay = 0;
             _boardConfigData = boardConfigData;
             ChangeStandardDelay(_boardConfigData.TimerInitialDelay);
-
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (_automatic)
@@ -44,7 +41,7 @@ namespace GOL.Board
             }
         }
 
-        public void SubscribeToAlarm(UnityAction action) => _alarm.AddListener(action);
+        public void Subscribe(UnityAction action) => _alarm.AddListener(action);
 
         public void AutomaticTurn()
         {

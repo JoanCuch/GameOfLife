@@ -69,12 +69,15 @@
     <Compile Include="Assets\Scripts\Configuration\BoardConfigData.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIController.cs" />
     <Compile Include="Assets\Scripts\Board\Cell\CellController.cs" />
-    <Compile Include="Assets\Scripts\ReactiveProperty.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ReactiveProperty.cs" />
     <Compile Include="Assets\Scripts\Configuration\CellStatesData.cs" />
     <Compile Include="Assets\Scripts\Board\Cell\CellModel.cs" />
     <Compile Include="Assets\Scripts\Board\BoardInstaller.cs" />
     <Compile Include="Assets\Scripts\Deprecated\BoardMovement.cs" />
     <Compile Include="Assets\Scripts\Configuration\GUIConfigData.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ICommand.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ResetBoardCommand.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\NextTurnCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
