@@ -11,15 +11,17 @@ namespace GOL.Board.Cell
         private CellStatesData _nextState;
         public readonly ReactiveProperty<CellStatesData> CurrentState;
         private bool _ableToChange;
+        public readonly Vector2Int Position;
 
         public BoardConfigData BoardConfigData => _boardConfigData;
 
-        public CellModel(BoardConfigData _boardConfigData)
+        public CellModel(Vector2Int position, BoardConfigData boardConfigData)
         {
-            this._boardConfigData = _boardConfigData;             
+            Position = position; 
+            _boardConfigData = boardConfigData;             
             _nextState = CellStatesData.dead;
             CurrentState = new ReactiveProperty<CellStatesData>();
-            CurrentState.Value = CellStatesData.dead;
+            //CurrentState.Value = CellStatesData.dead;
 
             _ableToChange = true;
         }

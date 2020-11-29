@@ -39,10 +39,10 @@ namespace GOL.Board
                     GameObject newCell = Instantiate(_cellPrefab, _view.transform);
                     CellView cellView = newCell.GetComponent<CellView>();
 
-                    CellModel cellModel = new CellModel(boardConfigData);
+                    CellModel cellModel = new CellModel(new Vector2Int(x,y), boardConfigData);
                     board[x, y] = cellModel;
 
-                    cellModel.CurrentState.Subscribe(new CellStateListCommand(cellModel, liveList).Execute);
+                    cellModel.CurrentState.Subscribe(new LiveListCommand(cellModel, liveList).Execute);
                     _view.IsDraggingBoard.Subscribe(cellModel.SetAbleToChange);
 
                     new CellController(cellModel, cellView);                   

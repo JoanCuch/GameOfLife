@@ -6,13 +6,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellStateListCommand : ICommand
+public class LiveListCommand : ICommand
 {
 	private List<CellModel> _liveList;
 	private CellModel _cellModel;
 
 
-	public CellStateListCommand(CellModel cellModel, List<CellModel> liveList)
+	public LiveListCommand(CellModel cellModel, List<CellModel> liveList)
 	{
 		_liveList = liveList;
 		_cellModel = cellModel;
@@ -28,6 +28,7 @@ public class CellStateListCommand : ICommand
 		if (_cellModel.CurrentState.Value == CellStatesData.live)
 		{
 			_liveList.Add(_cellModel);
+			
 		}
 		else if (_cellModel.CurrentState.Value == CellStatesData.dead)
 		{
@@ -37,7 +38,5 @@ public class CellStateListCommand : ICommand
 		{
 			Debug.LogError("A cell is in a incorrect state: " + _cellModel.CurrentState.Value);
 		}
-
-		Debug.Log(_liveList);
 	}
 }

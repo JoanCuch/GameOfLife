@@ -278,9 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardConfigData: {fileID: 11400000, guid: b6c9578f2167edc4fab388abec14c0ae, type: 2}
-  _gUIConfigData: {fileID: 11400000, guid: 45c46e0fbb4d52d498348cb18e2fc643, type: 2}
+  _guiConfigData: {fileID: 11400000, guid: 45c46e0fbb4d52d498348cb18e2fc643, type: 2}
   _boardInstaller: {fileID: 1426654198}
-  _gUIInstaller: {fileID: 1593292747}
+  _guiInstaller: {fileID: 1593292747}
 --- !u!4 &205099659
 Transform:
   m_ObjectHideFlags: 0
@@ -1612,6 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 1704339560}
+  _guiView: {fileID: 331720002}
   _cellPrefab: {fileID: 1841021691234559119, guid: 377d313d58ca5944a85dd7f9379daa46,
     type: 3}
   _timer: {fileID: 56364893}

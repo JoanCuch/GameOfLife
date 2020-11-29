@@ -13,49 +13,66 @@ namespace GOL.Board
         private CellModel[,] _board;
 
 		private List<CellModel> _liveList;
-		private List<CellModel> _neighboursOfLiveList;
 
 		public BoardModel(BoardConfigData boardConfigData, CellModel[,] cellModels, List<CellModel> liveList)
         {
 			_boardConfigData = boardConfigData;
 			_board = cellModels;
-
 			_liveList = liveList;
-			_neighboursOfLiveList = new List<CellModel>();
         }
 
 		public void CheckCellState()
 		{
-			for (int column = 0; column < _boardConfigData.BoardSize.x; column++)
+			List<CellModel> allNeighbours = new List<CellModel>();
+			
+			foreach(CellModel liveCell in _liveList)
 			{
-				for (int row = 0; row < _boardConfigData.BoardSize.y; row++)
+				List<CellModel> cellNeighbours = GetNeighbours(liveCell, allNeighbours);
+				liveCell.CheckNextState(cellNeighbours);
+				Debug.Log("live cell checked");
+			}
+
+			foreach(CellModel deadCell in allNeighbours)
+			{
+				List<CellModel> cellNeighbours = GetNeighbours(deadCell, null);
+				deadCell.CheckNextState(cellNeighbours);
+				Debug.Log("dead cell checked");
+
+			}
+		}
+
+		private List<CellModel> GetNeighbours(CellModel cell, List<CellModel> allNeighboursList)
+		{
+			List<CellModel> cellNeighbours = new List<CellModel>();
+
+			for (int x = -1; x <= 1; x++)
+			{
+				for (int y = -1; y <= 1; y++)
 				{
-					List<CellModel> neighbours = new List<CellModel>();
-
-					for (int x = -1; x <= 1; x++)
+					if (!(x == 0 && y == 0))
 					{
-						for (int y = -1; y <= 1; y++)
-						{
-							if (!(x == 0 && y == 0))
-							{
-								int ncolumn = column + x;
-								int nrow = row + y;
+						int ncolumn = cell.Position.x + x;
+						int nrow = cell.Position.y + y;
 
-								if (ncolumn >= 0 &&
-									ncolumn < _board.GetLength(0) &&
-									nrow >= 0 &&
-									nrow < _board.GetLength(1))
-								{
-									neighbours.Add(_board[ncolumn, nrow]);
-								}
+						if (ncolumn >= 0 &&
+							ncolumn < _board.GetLength(0) &&
+							nrow >= 0 &&
+							nrow < _board.GetLength(1))
+						{
+							CellModel neigh = _board[ncolumn, nrow];
+							cellNeighbours.Add(neigh);
+
+							if(neigh.CurrentState.Value != CellStatesData.live &&
+								allNeighboursList != null &&
+								!allNeighboursList.Contains(neigh))
+							{
+								allNeighboursList.Add(neigh);
 							}
 						}
 					}
-
-					_board[column, row].CheckNextState(neighbours);
-
 				}
 			}
+			return cellNeighbours;
 		}
 
 		public void UpdateCellState()
