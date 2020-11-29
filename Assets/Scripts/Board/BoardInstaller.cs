@@ -11,6 +11,7 @@ namespace GOL.Board
     public class BoardInstaller : MonoBehaviour
     {
         [SerializeField] private BoardView _view;
+        [SerializeField] private GUIView _guiView;
         [SerializeField] private GameObject _cellPrefab;
         [SerializeField] private Timer _timer;
         
@@ -24,7 +25,7 @@ namespace GOL.Board
 
             BoardModel model = new BoardModel(boardConfigData, cellModels);
 
-            BoardController controller = new BoardController(model, _view, _timer, guiModel);   
+            BoardController controller = new BoardController(model, _view, _timer, guiModel, _guiView);   
            
         }
 
@@ -42,7 +43,7 @@ namespace GOL.Board
                     CellModel cellModel = new CellModel(boardConfigData);
                     board[x, y] = cellModel;
 
-                    _view.SubscribeToDraggingBoar(cellModel.SetAbleToChange);
+                    _view.IsDraggingBoard.Subscribe(cellModel.SetAbleToChange);
 
                     new CellController(cellModel, cellView);                   
                 }

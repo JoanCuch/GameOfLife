@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-
 
 namespace GOL.GUI
 {
@@ -22,11 +19,9 @@ namespace GOL.GUI
         public void SubscribeToSizeScaleButton(UnityAction<float> action) => _sizeScrollBar.onValueChanged.AddListener(action);
         public void SubscribeToResetButton(UnityAction action) => _resetButton.onClick.AddListener(action);
 
-
         public void SetPlayButtonText(string newText)
 		{
             _playButtonText.text = newText;
 		}
-
     }
 }

@@ -12,8 +12,6 @@ namespace GOL.Board
         private BoardConfigData _boardConfigData;
         private CellModel[,] _board;
 
-		public BoardConfigData BoardConfigData => _boardConfigData;
-
 		public BoardModel(BoardConfigData boardConfigData, CellModel[,] cellModels)
         {
 			_boardConfigData = boardConfigData;

@@ -1,22 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-
-
-namespace GOL.GUI
+﻿namespace GOL.GUI
 {
 	public class GUIController
 	{
 		public GUIController(GUIView view, GUIModel model)
 		{
-			view.SubscribeToNextTurnButton(model.NextTurn);
-			view.SubscribeToPlayButton(model.ChangePlayState);
-			view.SubscribeToSizeScaleButton(model.ChangeSizeScale);
-			view.SubscribeToTimeScaleButton(model.ChangeTimeScale);
-			view.SubscribeToResetButton(model.Reset);
+			view.SubscribeToPlayButton(model.InversePlayPause);
+			view.SubscribeToSizeScaleButton(scale => model.SizeScale.Value = scale);
+			view.SubscribeToTimeScaleButton(scale => model.TimeScale.Value = scale);
 
-			model.SubscribeToPlayTextEvent(view.SetPlayButtonText);
+			model.PlayText.Subscribe(view.SetPlayButtonText);
 		}
 	}
 }

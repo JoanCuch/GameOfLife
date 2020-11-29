@@ -1,62 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using GOL.Configuration;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using GOL.Configuration;
 
 namespace GOL.Board
 {
-
     public class Timer : MonoBehaviour
     {
         private BoardConfigData _boardConfigData;
 
-        private bool _automatic;
-        private float _currentDelay;
-        private float _standardDelay;
+        private bool _loop;
+        private float _timeCounter;
+        private float _alarmDelay;
 
         private UnityEvent _alarm;
-
-        
+    
         public void Setup(BoardConfigData boardConfigData)
         {
             _alarm = new UnityEvent();
-            _automatic = false;
-            _currentDelay = 0;
+            _loop = false;
+            _timeCounter = 0;
             _boardConfigData = boardConfigData;
-            ChangeStandardDelay(_boardConfigData.TimerInitialDelay);
-
+            SetDelay(_boardConfigData.TimerInitialDelay);
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (_automatic)
+            if (_loop)
             {
-                _currentDelay += Time.deltaTime;
+                _timeCounter += Time.deltaTime;
 
-                if (_currentDelay >= _standardDelay)
+                if (_timeCounter >= _alarmDelay)
                 {
-                    _currentDelay = 0;
+                    _timeCounter = 0;
                     _alarm.Invoke();
                 }
             }
         }
 
-        public void SubscribeToAlarm(UnityAction action) => _alarm.AddListener(action);
+        public void Subscribe(UnityAction action) => _alarm.AddListener(action);
 
-        public void AutomaticTurn()
+        public void SetLoop(bool loop)
         {
-            _automatic = !_automatic;
-            _currentDelay = 0;
+            _loop = loop;
+            _timeCounter = 0;
         }
 
-        public void ChangeStandardDelay(float normalizedDelay)
+        public void SetDelay(float normalizedDelay)
         {
-            _standardDelay = Mathf.Lerp(_boardConfigData.TimerMinDelay, _boardConfigData.TimerMaxDelay, normalizedDelay)
+            _alarmDelay = Mathf.Lerp(_boardConfigData.TimerMinDelay, _boardConfigData.TimerMaxDelay, normalizedDelay)
                 * _boardConfigData.TimerDelayMultiplier;
         }
-
     }
 }

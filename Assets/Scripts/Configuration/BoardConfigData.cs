@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace GOL.Configuration
 {
@@ -31,7 +28,6 @@ namespace GOL.Configuration
         [SerializeField] private float _minDistanceToConsiderAsDragging;
         [SerializeField] private int _buttonsLayer;
 
-
         public int MouseClickButton => _mouseClickButton;
 
         public Vector2Int BoardSize => _boardSize;
@@ -52,10 +48,6 @@ namespace GOL.Configuration
 
         public float BoardLerping => _boardLerping;
         public int ButtonsLayer => _buttonsLayer;
-        public float MinDistanceToConsiderDragging => _minDistanceToConsiderAsDragging;
-
-        
-
-        
+        public float MinDistanceToConsiderDragging => _minDistanceToConsiderAsDragging;      
     }
 }

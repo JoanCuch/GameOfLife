@@ -1,10 +1,7 @@
-﻿using GOL.Configuration;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Dynamic;
+using GOL.Configuration;
+using GOL.Reactive;
 
 namespace GOL.Board
 {
@@ -16,26 +13,23 @@ namespace GOL.Board
         private Vector3 _distanceOffset;
         private Vector3 _origin;
         private bool _validClick;
+        private ReactiveProperty<bool> _isDraggingBoard;
 
-        private bool _sentEvent;
-        private UnityEvent<bool> _draggingBoard;
+        public ReactiveProperty<bool> IsDraggingBoard => _isDraggingBoard;
 
-        public void Setup(BoardConfigData _boardConfigData)
+        public void Setup(BoardConfigData boardConfigData)
         {
-            this._boardConfigData = _boardConfigData;
+            _boardConfigData = boardConfigData;
             _gridLayout.constraintCount = this._boardConfigData.BoardSize.x;
             _distanceOffset = Vector3.zero;
             _validClick = false;
-            _sentEvent = false;
-            _draggingBoard = new UnityEvent<bool>();
+            _isDraggingBoard = new ReactiveProperty<bool>(false);      
         }
 
         public void Update()
 		{
             UpdateBoardMovement();
 		}
-
-        public void SubscribeToDraggingBoar(UnityAction<bool> action) => _draggingBoard.AddListener(action);
 
         public void UpdateBoardScale(float scaleNumber)
         {
@@ -46,16 +40,13 @@ namespace GOL.Board
                 ) * _boardConfigData.BoardScaleMultiplier;
 
             Vector3 newScale = new Vector3(scale, scale, 1);
-
             transform.localScale = newScale;
         }
 
         public void UpdateBoardMovement()
-		{
-            
+		{            
             if (Input.GetMouseButtonDown(_boardConfigData.MouseClickButton))
             {
-
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = Camera.main.transform.position.z;
 
@@ -67,7 +58,6 @@ namespace GOL.Board
                     Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     _distanceOffset = touchPos - transform.position;
                     _origin = transform.position;
-                    _sentEvent = false;
                 }
             }
             
@@ -75,8 +65,7 @@ namespace GOL.Board
 			{
                 _validClick = false;
                 _origin = transform.position;
-                _draggingBoard.Invoke(false);
-
+                _isDraggingBoard.Value = false;
             }
 
             if (_validClick && Input.GetMouseButton(_boardConfigData.MouseClickButton))
@@ -85,17 +74,11 @@ namespace GOL.Board
                 Vector3 newPosition = new Vector3(touchPos.x - _distanceOffset.x, touchPos.y - _distanceOffset.y, transform.position.z);
                 transform.position = newPosition;
 
-                if(!_sentEvent && Vector3.Distance(_origin, transform.position) >= _boardConfigData.MinDistanceToConsiderDragging)
+                if(!_isDraggingBoard.Value && Vector3.Distance(_origin, transform.position) >= _boardConfigData.MinDistanceToConsiderDragging)
 				{
-                    _draggingBoard.Invoke(true);
-                    _sentEvent = true;
+                    _isDraggingBoard.Value = true;
                 }
-
             }
         }
-
-
-
-
     }
 }

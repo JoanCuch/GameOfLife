@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using GOL.Configuration;
 using UnityEngine.Events;
@@ -15,7 +12,6 @@ namespace GOL.Board.Cell
       
         private BoardConfigData _boardConfigData;
         
-        // Start is called before the first frame update
         public void Setup(BoardConfigData boardConfigData)
         {
             _boardConfigData = boardConfigData;
