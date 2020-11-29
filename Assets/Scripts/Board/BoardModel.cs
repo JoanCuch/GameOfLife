@@ -29,15 +29,12 @@ namespace GOL.Board
 			{
 				List<CellModel> cellNeighbours = GetNeighbours(liveCell, allNeighbours);
 				liveCell.CheckNextState(cellNeighbours);
-				Debug.Log("live cell checked");
 			}
 
 			foreach(CellModel deadCell in allNeighbours)
 			{
 				List<CellModel> cellNeighbours = GetNeighbours(deadCell, null);
 				deadCell.CheckNextState(cellNeighbours);
-				Debug.Log("dead cell checked");
-
 			}
 		}
 

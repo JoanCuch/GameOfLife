@@ -15,7 +15,7 @@ namespace GOL.Board
         [SerializeField] private GUIView _guiView;
         [SerializeField] private GameObject _cellPrefab;
         [SerializeField] private Timer _timer;
-             
+            
         public void Install(BoardConfigData boardConfigData, GUIModel guiModel)
         {
             _timer.Setup(boardConfigData);
@@ -23,9 +23,11 @@ namespace GOL.Board
 
             List<CellModel> liveList = new List<CellModel>();
             CellModel[,] cellModels = InstallCells(boardConfigData, liveList);
+
             BoardModel model = new BoardModel(boardConfigData, cellModels, liveList);
-            BoardController controller = new BoardController(model, _view, _timer, guiModel, _guiView);   
-           
+            BoardCommandsManager commandsManager = new BoardCommandsManager(model);
+
+            new BoardController(model, _view, _timer, guiModel, _guiView, commandsManager);       
         }
 
         private CellModel[,] InstallCells(BoardConfigData boardConfigData, List<CellModel> liveList)
@@ -39,7 +41,7 @@ namespace GOL.Board
                     GameObject newCell = Instantiate(_cellPrefab, _view.transform);
                     CellView cellView = newCell.GetComponent<CellView>();
 
-                    CellModel cellModel = new CellModel(new Vector2Int(x,y), boardConfigData);
+                    CellModel cellModel = new CellModel(new Vector2Int(x,y),boardConfigData);
                     board[x, y] = cellModel;
 
                     cellModel.CurrentState.Subscribe(new LiveListCommand(cellModel, liveList).Execute);
@@ -48,7 +50,6 @@ namespace GOL.Board
                     new CellController(cellModel, cellView);                   
                 }
             }
-
             return board;
         }
     }

@@ -4,17 +4,20 @@ using UnityEngine;
 using GOL.Reactive;
 using GOL.Board;
 
-public class ResetBoardCommand : ICommand
+namespace GOL.Reactive
 {
-	private BoardModel _model;
-
-	public ResetBoardCommand(BoardModel model)
+	public class ResetBoardCommand : ICommand
 	{
-		_model = model;
-	}
+		private BoardModel _model;
 
-    public void Execute()
-	{
-		_model.ResetCells();
+		public ResetBoardCommand(BoardModel model)
+		{
+			_model = model;
+		}
+
+		public void Execute()
+		{
+			_model.ResetCells();
+		}
 	}
 }

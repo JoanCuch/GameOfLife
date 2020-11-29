@@ -4,18 +4,21 @@ using UnityEngine;
 using GOL.Reactive;
 using GOL.Board;
 
-public class NextTurnCommand : ICommand
+namespace GOL.Reactive
 {
-	private BoardModel _model;
-
-	public NextTurnCommand(BoardModel model)
+	public class NextTurnCommand : ICommand
 	{
-		_model = model;
-	}
+		private BoardModel _model;
 
-	public void Execute()
-	{
-		_model.CheckCellState();
-		_model.UpdateCellState();
+		public NextTurnCommand(BoardModel model)
+		{
+			_model = model;
+		}
+
+		public void Execute()
+		{
+			_model.CheckCellState();
+			_model.UpdateCellState();
+		}
 	}
 }

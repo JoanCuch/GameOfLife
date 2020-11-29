@@ -56,15 +56,19 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\LiveListCommand.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIView.cs" />
     <Compile Include="Assets\Scripts\Board\BoardModel.cs" />
     <Compile Include="Assets\Scripts\GameOfLifeInstaller.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ResetBoardCommand.cs" />
     <Compile Include="Assets\Scripts\Board\Timer.cs" />
     <Compile Include="Assets\Scripts\Board\Cell\CellView.cs" />
     <Compile Include="Assets\Scripts\Board\BoardView.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIInstaller.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIModel.cs" />
     <Compile Include="Assets\Scripts\Board\BoardController.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\NextTurnCommand.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ICommand.cs" />
     <Compile Include="Assets\Scripts\Configuration\BoardConfigData.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIController.cs" />
     <Compile Include="Assets\Scripts\Board\Cell\CellController.cs" />
@@ -73,10 +77,7 @@
     <Compile Include="Assets\Scripts\Board\Cell\CellModel.cs" />
     <Compile Include="Assets\Scripts\Board\BoardInstaller.cs" />
     <Compile Include="Assets\Scripts\Configuration\GUIConfigData.cs" />
-    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ICommand.cs" />
-    <Compile Include="Assets\Scripts\Reactive&amp;Commands\ResetBoardCommand.cs" />
-    <Compile Include="Assets\Scripts\Reactive&amp;Commands\NextTurnCommand.cs" />
-    <Compile Include="Assets\Scripts\Reactive&amp;Commands\LiveListCommand.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\BoardCommandsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

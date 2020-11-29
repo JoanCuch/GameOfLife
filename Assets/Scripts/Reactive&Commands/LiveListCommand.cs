@@ -6,37 +6,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LiveListCommand : ICommand
+namespace GOL.Reactive
 {
-	private List<CellModel> _liveList;
-	private CellModel _cellModel;
-
-
-	public LiveListCommand(CellModel cellModel, List<CellModel> liveList)
+	public class LiveListCommand : ICommand
 	{
-		_liveList = liveList;
-		_cellModel = cellModel;
-	}
+		private List<CellModel> _liveList;
+		private CellModel _cellModel;
 
-	public void Execute(CellStatesData cellStateData)
-	{
-		Execute();
-	}
 
-	public void Execute()
-	{		
-		if (_cellModel.CurrentState.Value == CellStatesData.live)
+		public LiveListCommand(CellModel cellModel, List<CellModel> liveList)
 		{
-			_liveList.Add(_cellModel);
-			
+			_liveList = liveList;
+			_cellModel = cellModel;
 		}
-		else if (_cellModel.CurrentState.Value == CellStatesData.dead)
+
+		public void Execute(CellStatesData cellStateData)
 		{
-			_liveList.Remove(_cellModel);
+			Execute();
 		}
-		else
+
+		public void Execute()
 		{
-			Debug.LogError("A cell is in a incorrect state: " + _cellModel.CurrentState.Value);
+			if (_cellModel.CurrentState.Value == CellStatesData.live)
+			{
+				_liveList.Add(_cellModel);
+
+			}
+			else if (_cellModel.CurrentState.Value == CellStatesData.dead)
+			{
+				_liveList.Remove(_cellModel);
+			}
+			else
+			{
+				Debug.LogError("A cell is in a incorrect state: " + _cellModel.CurrentState.Value);
+			}
 		}
 	}
 }
