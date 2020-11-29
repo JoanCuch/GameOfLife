@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-
-
-namespace GOL.GUI
+﻿namespace GOL.GUI
 {
 	public class GUIController
 	{

@@ -31,14 +31,14 @@ namespace GOL.Board
             guiView.SubscribeToNextTurnButton(nextTurnCommand.Execute);
         }
 
-        public void Play(bool isOnPLay)
+        public void Play(bool isOnPlay)
         {
-            _timer.AutomaticTurn();
+            _timer.SetLoop(isOnPlay);
         }
 
         private void ChangeStandardDelay(float normalizedDelay)
         {
-            _timer.ChangeStandardDelay(normalizedDelay);
+            _timer.SetDelay(normalizedDelay);
         }
 
         private void ChangeBoardSize(float normalizedSize)

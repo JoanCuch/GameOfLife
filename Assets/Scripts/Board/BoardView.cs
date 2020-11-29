@@ -1,11 +1,7 @@
-﻿using GOL.Configuration;
-using GOL.Reactive;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Dynamic;
+using GOL.Configuration;
+using GOL.Reactive;
 
 namespace GOL.Board
 {
@@ -44,7 +40,6 @@ namespace GOL.Board
                 ) * _boardConfigData.BoardScaleMultiplier;
 
             Vector3 newScale = new Vector3(scale, scale, 1);
-
             transform.localScale = newScale;
         }
 
@@ -63,7 +58,6 @@ namespace GOL.Board
                     Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     _distanceOffset = touchPos - transform.position;
                     _origin = transform.position;
-                    //_isDraggingBoard.Value = false;
                 }
             }
             
@@ -72,7 +66,6 @@ namespace GOL.Board
                 _validClick = false;
                 _origin = transform.position;
                 _isDraggingBoard.Value = false;
-
             }
 
             if (_validClick && Input.GetMouseButton(_boardConfigData.MouseClickButton))

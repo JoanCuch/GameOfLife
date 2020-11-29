@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace GOL.Configuration
 {
@@ -10,7 +7,6 @@ namespace GOL.Configuration
     {
         [SerializeField] private string _playButtonString;
         [SerializeField] private string _pauseButtonString;
-
         public string PlayButtonString => _playButtonString;
         public string PauseButtonString => _pauseButtonString;
     }

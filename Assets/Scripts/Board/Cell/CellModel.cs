@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using GOL.Configuration;
 using GOL.Reactive;
-using UnityEngine.Events;
-using UnityEngine.PlayerLoop;
 
 namespace GOL.Board.Cell
 {
@@ -15,6 +12,7 @@ namespace GOL.Board.Cell
         private CellStatesData _nextState;
         public readonly ReactiveProperty<CellStatesData> UpdatedState;
         private bool _ableToChange;
+
         public BoardConfigData BoardConfigData => _boardConfigData;
 
         public CellModel(BoardConfigData _boardConfigData)
@@ -58,7 +56,6 @@ namespace GOL.Board.Cell
             {
                 Debug.LogError(" state not valid: " + _currentState);
             }
-
         }
 
         public void SetAbleToChange(bool dragging)

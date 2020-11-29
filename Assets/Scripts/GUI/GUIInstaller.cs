@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GOL.Configuration;
-
+﻿using UnityEngine;
 
 namespace GOL.GUI
 {
