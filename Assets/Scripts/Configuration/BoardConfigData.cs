@@ -27,6 +27,7 @@ namespace GOL.Configuration
         [SerializeField] private float _boardLerping;
         [SerializeField] private float _minDistanceToConsiderAsDragging;
         [SerializeField] private int _buttonsLayer;
+        [SerializeField] private float _ratioPixelsUnit;
 
         public int MouseClickButton => _mouseClickButton;
 
@@ -48,6 +49,7 @@ namespace GOL.Configuration
 
         public float BoardLerping => _boardLerping;
         public int ButtonsLayer => _buttonsLayer;
-        public float MinDistanceToConsiderDragging => _minDistanceToConsiderAsDragging;      
+        public float MinDistanceToConsiderDragging => _minDistanceToConsiderAsDragging;
+        public float RatioPixelsUnits => _ratioPixelsUnit;
     }
 }
