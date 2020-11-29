@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GOL.Configuration;
 using GOL.GUI;
+using GOL.Reactive;
 
 
 namespace GOL.Board
@@ -14,22 +15,20 @@ namespace GOL.Board
         [SerializeField] private GUIView _guiView;
         [SerializeField] private GameObject _cellPrefab;
         [SerializeField] private Timer _timer;
-        
-        
+             
         public void Install(BoardConfigData boardConfigData, GUIModel guiModel)
         {
             _timer.Setup(boardConfigData);
             _view.Setup(boardConfigData);
 
-            CellModel[,] cellModels = InstallCells(boardConfigData);
-
-            BoardModel model = new BoardModel(boardConfigData, cellModels);
-
+            List<CellModel> liveList = new List<CellModel>();
+            CellModel[,] cellModels = InstallCells(boardConfigData, liveList);
+            BoardModel model = new BoardModel(boardConfigData, cellModels, liveList);
             BoardController controller = new BoardController(model, _view, _timer, guiModel, _guiView);   
            
         }
 
-        private CellModel[,] InstallCells(BoardConfigData boardConfigData)
+        private CellModel[,] InstallCells(BoardConfigData boardConfigData, List<CellModel> liveList)
         {
             CellModel[,] board = new CellModel[boardConfigData.BoardSize.x, boardConfigData.BoardSize.y];
 
@@ -43,6 +42,7 @@ namespace GOL.Board
                     CellModel cellModel = new CellModel(boardConfigData);
                     board[x, y] = cellModel;
 
+                    cellModel.CurrentState.Subscribe(new CellStateListCommand(cellModel, liveList).Execute);
                     _view.IsDraggingBoard.Subscribe(cellModel.SetAbleToChange);
 
                     new CellController(cellModel, cellView);                   

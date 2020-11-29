@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Reactive&amp;Commands\ICommand.cs" />
     <Compile Include="Assets\Scripts\Reactive&amp;Commands\ResetBoardCommand.cs" />
     <Compile Include="Assets\Scripts\Reactive&amp;Commands\NextTurnCommand.cs" />
+    <Compile Include="Assets\Scripts\Reactive&amp;Commands\CellStateListCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

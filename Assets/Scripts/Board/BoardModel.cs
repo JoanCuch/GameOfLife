@@ -12,10 +12,16 @@ namespace GOL.Board
         private BoardConfigData _boardConfigData;
         private CellModel[,] _board;
 
-		public BoardModel(BoardConfigData boardConfigData, CellModel[,] cellModels)
+		private List<CellModel> _liveList;
+		private List<CellModel> _neighboursOfLiveList;
+
+		public BoardModel(BoardConfigData boardConfigData, CellModel[,] cellModels, List<CellModel> liveList)
         {
 			_boardConfigData = boardConfigData;
 			_board = cellModels;
+
+			_liveList = liveList;
+			_neighboursOfLiveList = new List<CellModel>();
         }
 
 		public void CheckCellState()
@@ -67,7 +73,5 @@ namespace GOL.Board
 				cell.Reset();
 			}
 		}
-
-
 	}
 }
