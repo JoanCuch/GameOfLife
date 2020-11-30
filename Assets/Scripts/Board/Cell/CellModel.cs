@@ -8,20 +8,20 @@ namespace GOL.Board.Cell
     public class CellModel
     {
         private BoardConfigData _boardConfigData;
-        private CellStatesData _currentState;
         private CellStatesData _nextState;
-        public readonly ReactiveProperty<CellStatesData> UpdatedState;
+        public readonly ReactiveProperty<CellStatesData> CurrentState;
         private bool _ableToChange;
+        public readonly Vector2Int Position;
 
         public BoardConfigData BoardConfigData => _boardConfigData;
 
-        public CellModel(BoardConfigData _boardConfigData)
+        public CellModel(Vector2Int position, BoardConfigData boardConfigData)
         {
-            this._boardConfigData = _boardConfigData;
-            _currentState = CellStatesData.dead;
+            Position = position; 
+            _boardConfigData = boardConfigData;             
             _nextState = CellStatesData.dead;
-
-            UpdatedState = new ReactiveProperty<CellStatesData>();
+            CurrentState = new ReactiveProperty<CellStatesData>();
+            //CurrentState.Value = CellStatesData.dead;
 
             _ableToChange = true;
         }
@@ -32,20 +32,20 @@ namespace GOL.Board.Cell
 
             foreach (CellModel neighbour in neighbours)
             {
-                if (neighbour.GetCurrentState() == CellStatesData.live)
+                if (neighbour.CurrentState.Value == CellStatesData.live)
                 {
                     liveNeighbours++;
                 }
             }
 
-            if (_currentState == CellStatesData.live)
+            if (CurrentState.Value == CellStatesData.live)
             {
                 if (liveNeighbours <= _boardConfigData.MinNeighboursToLife || liveNeighbours >= _boardConfigData.MaxNeighboursToLife)
                 {
                     _nextState = CellStatesData.dead;
                 }
             }
-            else if (_currentState == CellStatesData.dead)
+            else if (CurrentState.Value == CellStatesData.dead)
             {
                 if (liveNeighbours == _boardConfigData.MinNeighboursToBorn)
                 {
@@ -54,7 +54,7 @@ namespace GOL.Board.Cell
             }
             else
             {
-                Debug.LogError(" state not valid: " + _currentState);
+                Debug.LogError(" state not valid: " + CurrentState);
             }
         }
 
@@ -67,23 +67,18 @@ namespace GOL.Board.Cell
         {
             if (_nextState == CellStatesData.unkown) return;
 
-            _currentState = _nextState;
-            _nextState = CellStatesData.unkown;
-            UpdatedState.Value = _currentState;
-        }
+            if (CurrentState.Value != _nextState) CurrentState.Value = _nextState;
 
-        public CellStatesData GetCurrentState()
-        {
-            return _currentState;
+            _nextState = CellStatesData.unkown;
         }
 
         public void InverseCurrentState()
         {
             if (_ableToChange)
             {
-                if (_currentState == CellStatesData.dead) _nextState = CellStatesData.live;
-                else if (_currentState == CellStatesData.live) _nextState = CellStatesData.dead;
-                else Debug.LogWarning(" has an invalid state: " + _currentState);
+                if (CurrentState.Value == CellStatesData.dead) _nextState = CellStatesData.live;
+                else if (CurrentState.Value == CellStatesData.live) _nextState = CellStatesData.dead;
+                else Debug.LogWarning(" has an invalid state: " + CurrentState);
 
                 UpdateCurrentState();
             }
@@ -95,7 +90,7 @@ namespace GOL.Board.Cell
 
         public void Reset()
 		{
-            if (_currentState == CellStatesData.live) InverseCurrentState();
+            if (CurrentState.Value == CellStatesData.live) InverseCurrentState();
 		}
     }
 }

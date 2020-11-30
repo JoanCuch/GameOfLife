@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BoardConfigData
   m_EditorClassIdentifier: 
   _mouseClickButton: 0
-  _boardSize: {x: 10, y: 10}
+  _boardSize: {x: 50, y: 50}
   _boardMinScale: 0.1
   _boardMaxScale: 3
-  _boardScaleMultiplier: 1
-  _boardInitialScale: 1
+  _boardScaleMultiplier: 0.02
+  _boardInitialScale: 0.5
   _timerMinDelay: 0.1
   _timerMaxDelay: 5
   _timerDelayMultiplier: 0.3
@@ -30,3 +30,4 @@ MonoBehaviour:
   _boardLerping: 0.3
   _minDistanceToConsiderAsDragging: 1
   _buttonsLayer: 5
+  _ratioPixelsUnit: 55

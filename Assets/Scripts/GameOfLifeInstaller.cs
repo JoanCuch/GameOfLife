@@ -19,7 +19,7 @@ namespace GOL
         {
             GUIModel guiModel = new GUIModel(_guiConfigData);
 
-            _guiInstaller.Install(guiModel);
+            _guiInstaller.Install( _boardConfigData, guiModel);
             _boardInstaller.Install(_boardConfigData, guiModel);
         }
     }

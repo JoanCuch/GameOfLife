@@ -13,22 +13,20 @@ namespace GOL.Board
         private BoardView _view;
         private Timer _timer;
 
-        public BoardController(BoardModel model, BoardView view, Timer timer, GUIModel guiModel, GUIView guiView)
+        public BoardController(BoardModel model, BoardView view, Timer timer, GUIModel guiModel, GUIView guiView, BoardCommandsManager commandsManager)
         {
             _model = model;
             _view = view;
             _timer = timer;
 
-            NextTurnCommand nextTurnCommand = new NextTurnCommand(model);
-
-            _timer.Subscribe(nextTurnCommand.Execute);
+            _timer.Subscribe(commandsManager.NextTurnCommand.Execute);
 
             guiModel.Play.Subscribe(Play);
             guiModel.TimeScale.Subscribe(ChangeStandardDelay);
             guiModel.SizeScale.Subscribe(ChangeBoardSize);
 
-            guiView.SubscribeToResetButton(new ResetBoardCommand(model).Execute);
-            guiView.SubscribeToNextTurnButton(nextTurnCommand.Execute);
+            guiView.SubscribeToResetButton(commandsManager.ResetBoardCommand.Execute);
+            guiView.SubscribeToNextTurnButton(commandsManager.NextTurnCommand.Execute);
         }
 
         public void Play(bool isOnPlay)
