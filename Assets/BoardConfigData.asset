@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: BoardConfigData
   m_EditorClassIdentifier: 
   _mouseClickButton: 0
-  _boardSize: {x: 50, y: 50}
-  _boardMinScale: 0.1
-  _boardMaxScale: 3
+  _boardSize: {x: 64, y: 36}
+  _boardMinScale: 0.3
+  _boardMaxScale: 1.5
   _boardScaleMultiplier: 0.02
   _boardInitialScale: 0.5
   _timerMinDelay: 0.1
-  _timerMaxDelay: 5
+  _timerMaxDelay: 4
   _timerDelayMultiplier: 0.3
   _timerInitialDelay: 0.5
-  _liveColor: {r: 0.073467255, g: 1, b: 0, a: 1}
-  _deadColor: {r: 0, g: 0, b: 0, a: 1}
+  _liveColor: {r: 0.9137255, g: 0.76862746, b: 0.41568628, a: 1}
+  _deadColor: {r: 0.14901961, g: 0.27450982, b: 0.3254902, a: 1}
   _minNeighboursToLife: 1
   _maxNeighboursToLife: 4
   _minNeighbousToBorn: 3
