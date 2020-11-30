@@ -35,6 +35,7 @@ namespace GOL.Configuration
         public float BoardMinScale => _boardMinScale;
         public float BoardMaxScale => _boardMaxScale;
         public float BoardScaleMultiplier => _boardScaleMultiplier;
+        public float BoardInitialScale => _boardInitialScale;
 
         public float TimerMinDelay => _timerMinDelay;
         public float TimerMaxDelay => _timerMaxDelay;

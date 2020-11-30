@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GOL.Configuration;
 
 namespace GOL.GUI
 {
@@ -6,8 +7,9 @@ namespace GOL.GUI
     {
         [SerializeField] private GUIView _view;
 
-        public void Install(GUIModel model)
+        public void Install(BoardConfigData boardConfigData, GUIModel model)
 		{
+            _view.Setup(boardConfigData);
             new GUIController(_view, model); 
 		}
     }
